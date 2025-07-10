@@ -25,11 +25,20 @@
             background: radial-gradient(circle, rgba(79, 70, 229, 0.05) 0%, rgba(248, 250, 252, 0) 60%);
         }
         .project-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.4s ease;
         }
         .project-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+        .project-card.hidden {
+            opacity: 0;
+            transform: scale(0.95);
+            pointer-events: none;
+            height: 0;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
         }
         .fade-in-section {
             opacity: 0;
@@ -62,8 +71,12 @@
         .faq-icon {
             transition: transform 0.3s ease-in-out;
         }
+        .filter-btn.active {
+            background-color: #4f46e5;
+            color: white;
+        }
     </style>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9042557168555887"
+     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9042557168555887"
      crossorigin="anonymous"></script>
 </head>
 <body class="text-slate-800">
@@ -151,16 +164,24 @@
         <!-- Portfolio Section -->
         <section id="portfolio" class="py-20 bg-white">
             <div class="container mx-auto px-6">
-                <div class="text-center mb-16 fade-in-section">
+                <div class="text-center mb-12 fade-in-section">
                     <h2 class="text-4xl font-bold text-slate-900">Our Portfolio</h2>
                     <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600">
                         We create powerful, intuitive tools that solve real-world problems. Here's a selection of our work.
                     </p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                    <!-- Project Card 1: Onboarding Task Manager -->
-                    <div class="project-card bg-white rounded-2xl shadow-lg overflow-hidden fade-in-section">
+                <!-- Filter Buttons -->
+                <div id="filter-buttons" class="flex justify-center flex-wrap gap-2 mb-12 fade-in-section">
+                    <button class="filter-btn active bg-indigo-600 text-white px-4 py-2 rounded-full font-semibold" data-filter="all">All</button>
+                    <button class="filter-btn bg-white px-4 py-2 rounded-full font-semibold" data-filter="finance">Financial Tools</button>
+                    <button class="filter-btn bg-white px-4 py-2 rounded-full font-semibold" data-filter="healthcare">Healthcare Solutions</button>
+                    <button class="filter-btn bg-white px-4 py-2 rounded-full font-semibold" data-filter="business">Business Management</button>
+                </div>
+
+                <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <!-- Project Card: Onboarding Task Manager -->
+                    <div class="project-card bg-white rounded-2xl shadow-lg overflow-hidden fade-in-section" data-category="finance">
                         <img src="https://placehold.co/600x400/8b5cf6/ffffff?text=Onboarding+Tool" alt="Onboarding Task Manager Screenshot" class="w-full h-48 object-cover">
                         <div class="p-6">
                             <h3 class="text-xl font-bold text-slate-900">Onboarding Task Manager</h3>
@@ -170,8 +191,8 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Project Card 2: Clinic Management -->
-                    <div class="project-card bg-white rounded-2xl shadow-lg overflow-hidden fade-in-section" style="transition-delay: 100ms;">
+                    <!-- Project Card: Clinic Management -->
+                    <div class="project-card bg-white rounded-2xl shadow-lg overflow-hidden fade-in-section" data-category="healthcare">
                         <img src="https://placehold.co/600x400/6366f1/ffffff?text=Clinic+System" alt="Clinic Management System Screenshot" class="w-full h-48 object-cover">
                         <div class="p-6">
                             <h3 class="text-xl font-bold text-slate-900">Clinic Management System</h3>
@@ -181,8 +202,8 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Project Card 3: Restaurant Management -->
-                    <div class="project-card bg-white rounded-2xl shadow-lg overflow-hidden fade-in-section" style="transition-delay: 200ms;">
+                    <!-- Project Card: Restaurant Management -->
+                    <div class="project-card bg-white rounded-2xl shadow-lg overflow-hidden fade-in-section" data-category="business">
                         <img src="https://placehold.co/600x400/10b981/ffffff?text=Restaurant+System" alt="Restaurant Management System Screenshot" class="w-full h-48 object-cover">
                         <div class="p-6">
                             <h3 class="text-xl font-bold text-slate-900">Restaurant Management System</h3>
@@ -192,8 +213,8 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Project Card 4: Financial KPI Dashboard -->
-                    <div class="project-card bg-white rounded-2xl shadow-lg overflow-hidden fade-in-section" style="transition-delay: 300ms;">
+                    <!-- Project Card: Financial KPI Dashboard -->
+                    <div class="project-card bg-white rounded-2xl shadow-lg overflow-hidden fade-in-section" data-category="finance">
                         <img src="https://placehold.co/600x400/f59e0b/ffffff?text=KPI+Dashboard" alt="Financial KPI Dashboard Screenshot" class="w-full h-48 object-cover">
                         <div class="p-6">
                             <h3 class="text-xl font-bold text-slate-900">Financial KPI Dashboard</h3>
@@ -203,8 +224,8 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Project Card 5: Financial Anomaly Checker -->
-                    <div class="project-card bg-white rounded-2xl shadow-lg overflow-hidden fade-in-section" style="transition-delay: 400ms;">
+                    <!-- Project Card: Financial Anomaly Checker -->
+                    <div class="project-card bg-white rounded-2xl shadow-lg overflow-hidden fade-in-section" data-category="finance">
                         <img src="https://placehold.co/600x400/ef4444/ffffff?text=Anomaly+Checker" alt="Financial Anomaly Checker Screenshot" class="w-full h-48 object-cover">
                         <div class="p-6">
                             <h3 class="text-xl font-bold text-slate-900">Financial Anomaly Checker</h3>
@@ -392,6 +413,29 @@
 
             sections.forEach(section => {
                 observer.observe(section);
+            });
+
+            // --- Portfolio Filter ---
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const portfolioGrid = document.getElementById('portfolio-grid');
+            const projectCards = portfolioGrid.querySelectorAll('.project-card');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Update active button style
+                    filterButtons.forEach(btn => btn.classList.remove('active', 'bg-indigo-600', 'text-white'));
+                    button.classList.add('active', 'bg-indigo-600', 'text-white');
+
+                    const filter = button.dataset.filter;
+
+                    projectCards.forEach(card => {
+                        if (filter === 'all' || card.dataset.category === filter) {
+                            card.classList.remove('hidden');
+                        } else {
+                            card.classList.add('hidden');
+                        }
+                    });
+                });
             });
 
             // --- FAQ Accordion ---
