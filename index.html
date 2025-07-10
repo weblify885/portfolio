@@ -48,6 +48,20 @@
             from, to { border-color: transparent }
             50% { border-color: #4f46e5; }
         }
+        .faq-item .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+        }
+        .faq-item.open .faq-answer {
+            max-height: 200px; /* Adjust as needed */
+        }
+        .faq-item.open .faq-icon {
+            transform: rotate(45deg);
+        }
+        .faq-icon {
+            transition: transform 0.3s ease-in-out;
+        }
     </style>
 </head>
 <body class="text-slate-800">
@@ -59,10 +73,12 @@
                 <span class="bg-indigo-600 text-white rounded-md px-2 py-1 mr-2">W</span>
                 <span>eblify</span>
             </a>
-            <nav class="hidden md:flex space-x-8">
+            <nav class="hidden md:flex space-x-6">
                 <a href="#about" class="text-slate-600 hover:text-indigo-600 transition">About</a>
+                <a href="#services" class="text-slate-600 hover:text-indigo-600 transition">Services</a>
                 <a href="#portfolio" class="text-slate-600 hover:text-indigo-600 transition">Portfolio</a>
-                <a href="#contact" class="text-slate-600 hover:text-indigo-600 transition">Contact</a>
+                <a href="#process" class="text-slate-600 hover:text-indigo-600 transition">Process</a>
+                <a href="#faq" class="text-slate-600 hover:text-indigo-600 transition">FAQ</a>
             </nav>
             <a href="#contact" class="hidden md:block bg-indigo-600 text-white px-5 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition shadow-sm">
                 Get a Quote
@@ -103,8 +119,35 @@
             </div>
         </section>
 
+        <!-- Services Section -->
+        <section id="services" class="py-20">
+            <div class="container mx-auto px-6 fade-in-section">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-slate-900">What We Do</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600">We provide end-to-end development services to bring your project to life.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="text-center p-8 bg-white rounded-2xl shadow-lg">
+                        <div class="inline-block p-4 bg-indigo-100 text-indigo-600 rounded-full"><i data-lucide="layout-template"></i></div>
+                        <h3 class="text-xl font-bold mt-4">Custom Web Apps</h3>
+                        <p class="mt-2 text-slate-600">We design and build tailored web applications from scratch to meet your unique business needs and workflows.</p>
+                    </div>
+                    <div class="text-center p-8 bg-white rounded-2xl shadow-lg">
+                        <div class="inline-block p-4 bg-indigo-100 text-indigo-600 rounded-full"><i data-lucide="zap"></i></div>
+                        <h3 class="text-xl font-bold mt-4">Automation & Integration</h3>
+                        <p class="mt-2 text-slate-600">We automate your manual processes and integrate disparate systems to improve efficiency and reduce errors.</p>
+                    </div>
+                    <div class="text-center p-8 bg-white rounded-2xl shadow-lg">
+                        <div class="inline-block p-4 bg-indigo-100 text-indigo-600 rounded-full"><i data-lucide="pen-tool"></i></div>
+                        <h3 class="text-xl font-bold mt-4">UI/UX & Prototyping</h3>
+                        <p class="mt-2 text-slate-600">We create intuitive, user-friendly interfaces and interactive prototypes to validate ideas before development.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Portfolio Section -->
-        <section id="portfolio" class="py-20">
+        <section id="portfolio" class="py-20 bg-white">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16 fade-in-section">
                     <h2 class="text-4xl font-bold text-slate-900">Our Portfolio</h2>
@@ -113,10 +156,20 @@
                     </p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10">
-                    <!-- Project Card 1: Clinic Management -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <!-- Project Card 1: Onboarding Task Manager -->
                     <div class="project-card bg-white rounded-2xl shadow-lg overflow-hidden fade-in-section">
-                        <!-- Replace with your image: e.g., './images/clinic-management.png' -->
+                        <img src="https://placehold.co/600x400/8b5cf6/ffffff?text=Onboarding+Tool" alt="Onboarding Task Manager Screenshot" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-900">Onboarding Task Manager</h3>
+                            <p class="mt-2 text-slate-600">An internal tool for professional firms to standardize and track new client onboarding with dynamic checklists, progress tracking, and notes.</p>
+                            <div class="mt-6">
+                                <a href="https://vantageonboarding.netlify.app/" target="_blank" class="w-full block text-center bg-indigo-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition">Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project Card 2: Clinic Management -->
+                    <div class="project-card bg-white rounded-2xl shadow-lg overflow-hidden fade-in-section" style="transition-delay: 100ms;">
                         <img src="https://placehold.co/600x400/6366f1/ffffff?text=Clinic+System" alt="Clinic Management System Screenshot" class="w-full h-48 object-cover">
                         <div class="p-6">
                             <h3 class="text-xl font-bold text-slate-900">Clinic Management System</h3>
@@ -126,10 +179,8 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Project Card 2: Restaurant Management -->
-                    <div class="project-card bg-white rounded-2xl shadow-lg overflow-hidden fade-in-section" style="transition-delay: 100ms;">
-                        <!-- Replace with your image: e.g., './images/restaurant-management.png' -->
+                    <!-- Project Card 3: Restaurant Management -->
+                    <div class="project-card bg-white rounded-2xl shadow-lg overflow-hidden fade-in-section" style="transition-delay: 200ms;">
                         <img src="https://placehold.co/600x400/10b981/ffffff?text=Restaurant+System" alt="Restaurant Management System Screenshot" class="w-full h-48 object-cover">
                         <div class="p-6">
                             <h3 class="text-xl font-bold text-slate-900">Restaurant Management System</h3>
@@ -139,10 +190,8 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Project Card 3: Financial KPI Dashboard -->
-                    <div class="project-card bg-white rounded-2xl shadow-lg overflow-hidden fade-in-section" style="transition-delay: 200ms;">
-                        <!-- Replace with your image: e.g., './images/kpi-dashboard.png' -->
+                    <!-- Project Card 4: Financial KPI Dashboard -->
+                    <div class="project-card bg-white rounded-2xl shadow-lg overflow-hidden fade-in-section" style="transition-delay: 300ms;">
                         <img src="https://placehold.co/600x400/f59e0b/ffffff?text=KPI+Dashboard" alt="Financial KPI Dashboard Screenshot" class="w-full h-48 object-cover">
                         <div class="p-6">
                             <h3 class="text-xl font-bold text-slate-900">Financial KPI Dashboard</h3>
@@ -152,10 +201,8 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- Project Card 4: Financial Anomaly Checker -->
-                    <div class="project-card bg-white rounded-2xl shadow-lg overflow-hidden fade-in-section" style="transition-delay: 300ms;">
-                        <!-- Replace with your image: e.g., './images/anomaly-checker.png' -->
+                    <!-- Project Card 5: Financial Anomaly Checker -->
+                    <div class="project-card bg-white rounded-2xl shadow-lg overflow-hidden fade-in-section" style="transition-delay: 400ms;">
                         <img src="https://placehold.co/600x400/ef4444/ffffff?text=Anomaly+Checker" alt="Financial Anomaly Checker Screenshot" class="w-full h-48 object-cover">
                         <div class="p-6">
                             <h3 class="text-xl font-bold text-slate-900">Financial Anomaly Checker</h3>
@@ -165,6 +212,69 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section id="process" class="py-20">
+            <div class="container mx-auto px-6 fade-in-section">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-slate-900">Our Development Process</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600">We follow a structured, transparent process to ensure your project is a success from start to finish.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
+                    <div class="p-6">
+                        <div class="flex items-center justify-center h-16 w-16 mx-auto bg-indigo-100 text-indigo-600 rounded-full text-2xl font-bold">1</div>
+                        <h3 class="text-xl font-semibold mt-4">Discovery & Strategy</h3>
+                        <p class="mt-2 text-slate-600">We start by understanding your goals, challenges, and requirements to define a clear project roadmap.</p>
+                    </div>
+                     <div class="p-6">
+                        <div class="flex items-center justify-center h-16 w-16 mx-auto bg-indigo-100 text-indigo-600 rounded-full text-2xl font-bold">2</div>
+                        <h3 class="text-xl font-semibold mt-4">Design & Prototype</h3>
+                        <p class="mt-2 text-slate-600">We design an intuitive user interface and create interactive prototypes for your feedback and approval.</p>
+                    </div>
+                     <div class="p-6">
+                        <div class="flex items-center justify-center h-16 w-16 mx-auto bg-indigo-100 text-indigo-600 rounded-full text-2xl font-bold">3</div>
+                        <h3 class="text-xl font-semibold mt-4">Development & Testing</h3>
+                        <p class="mt-2 text-slate-600">Our team builds the application using modern technologies, with rigorous testing throughout the process.</p>
+                    </div>
+                     <div class="p-6">
+                        <div class="flex items-center justify-center h-16 w-16 mx-auto bg-indigo-100 text-indigo-600 rounded-full text-2xl font-bold">4</div>
+                        <h3 class="text-xl font-semibold mt-4">Launch & Support</h3>
+                        <p class="mt-2 text-slate-600">We handle the deployment and provide ongoing support to ensure your application runs smoothly.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="py-20 bg-white">
+            <div class="container mx-auto px-6 fade-in-section">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-slate-900">What Our Clients Say</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200">
+                        <p class="text-slate-600">"Weblify transformed our internal workflow. The onboarding tool they built for us has saved our team countless hours and eliminated manual errors. Highly recommended!"</p>
+                        <div class="mt-4 font-semibold text-slate-800">- Roopansh Anand, Freelancer</div>
+                    </div>
+                    <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200">
+                        <p class="text-slate-600">"The custom management system they developed is the backbone of our clinic. It's intuitive, reliable, and has allowed us to provide a much better experience for our patients."</p>
+                        <div class="mt-4 font-semibold text-slate-800">- Arshi Khan, Tata Consultancy Services</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- FAQ Section -->
+        <section id="faq" class="py-20">
+            <div class="container mx-auto px-6 fade-in-section">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-slate-900">Frequently Asked Questions</h2>
+                </div>
+                <div id="faq-container" class="max-w-3xl mx-auto space-y-4">
+                    <!-- FAQ items will be injected here -->
                 </div>
             </div>
         </section>
@@ -280,6 +390,46 @@
 
             sections.forEach(section => {
                 observer.observe(section);
+            });
+
+            // --- FAQ Accordion ---
+            const faqContainer = document.getElementById('faq-container');
+            const faqs = [
+                { q: "What is your development process?", a: "We follow a 4-step process: Discovery & Strategy, Design & Prototype, Development & Testing, and Launch & Support. This ensures we build the right solution that meets your goals, on time and on budget." },
+                { q: "How much does a custom web application cost?", a: "The cost of a custom app varies depending on the complexity, features, and timeline. After our initial discovery call, we provide a detailed proposal with a fixed price or a project estimate." },
+                { q: "How long does it take to build an app?", a: "A typical project can take anywhere from 4 to 12 weeks. Simpler applications can be built faster, while more complex systems require more time for development and testing." },
+                { q: "What technologies do you use?", a: "We use modern, reliable technologies to build our applications. Our front-end work is typically done in HTML, CSS, and JavaScript (often with frameworks like React), and we are flexible with backend technologies based on project needs." }
+            ];
+
+            faqContainer.innerHTML = faqs.map((faq, index) => `
+                <div class="faq-item border border-slate-200 rounded-lg">
+                    <button class="faq-question w-full flex justify-between items-center text-left p-4 font-semibold">
+                        <span>${faq.q}</span>
+                        <i data-lucide="plus" class="faq-icon h-5 w-5 text-indigo-600"></i>
+                    </button>
+                    <div class="faq-answer px-4 pb-4 text-slate-600">
+                        <p>${faq.a}</p>
+                    </div>
+                </div>
+            `).join('');
+            
+            lucide.createIcons(); // Re-initialize icons for FAQ
+
+            faqContainer.addEventListener('click', (e) => {
+                const questionButton = e.target.closest('.faq-question');
+                if (questionButton) {
+                    const faqItem = questionButton.parentElement;
+                    const icon = questionButton.querySelector('.faq-icon');
+                    
+                    faqItem.classList.toggle('open');
+                    
+                    if (faqItem.classList.contains('open')) {
+                        icon.setAttribute('data-lucide', 'minus');
+                    } else {
+                        icon.setAttribute('data-lucide', 'plus');
+                    }
+                    lucide.createIcons();
+                }
             });
         });
     </script>
