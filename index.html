@@ -3,23 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shahrukh Khan | Automation Consultant</title>
+    <title>Weblify - Custom Web Application Development</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts -->
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #111827; /* bg-gray-900 */
-            color: #F3F4F6; /* text-gray-100 */
+            background-color: #f8fafc; /* slate-50 */
         }
-        /* Simple scroll-in animation */
+        .hero-gradient {
+            background: radial-gradient(circle, rgba(79, 70, 229, 0.05) 0%, rgba(248, 250, 252, 0) 60%);
+        }
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.4s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+        .project-card.hidden {
+            opacity: 0;
+            transform: scale(0.95);
+            pointer-events: none;
+            height: 0;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
         .fade-in-section {
             opacity: 0;
             transform: translateY(20px);
@@ -29,310 +49,435 @@
             opacity: 1;
             transform: translateY(0);
         }
-        .gradient-text {
-            background: linear-gradient(to right, #60A5FA, #34D399); /* blue-400 to emerald-400 */
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .typing-cursor {
+            border-right: .15em solid #4f46e5; /* indigo-600 */
+            animation: blink-caret .75s step-end infinite;
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #4f46e5; }
+        }
+        .faq-item .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+        }
+        .faq-item.open .faq-answer {
+            max-height: 200px; /* Adjust as needed */
+        }
+        .faq-item.open .faq-icon {
+            transform: rotate(45deg);
+        }
+        .faq-icon {
+            transition: transform 0.3s ease-in-out;
+        }
+        .filter-btn.active {
+            background-color: #4f46e5;
+            color: white;
         }
     </style>
+     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9042557168555887"
+     crossorigin="anonymous"></script>
 </head>
-<body class="antialiased">
+<body class="text-slate-800">
 
     <!-- Header -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-gray-900 bg-opacity-80 backdrop-blur-md border-b border-gray-800">
-        <nav class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-xl font-bold text-white">
-                Shahrukh Khan
+    <header id="header" class="bg-white/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 shadow-sm">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-slate-900 flex items-center">
+                <span class="bg-indigo-600 text-white rounded-md px-2 py-1 mr-2">W</span>
+                <span>eblify</span>
             </a>
-            <ul class="flex items-center space-x-6">
-                <li><a href="#services" class="text-gray-300 hover:text-blue-400 transition duration-300">Services</a></li>
-                <li><a href="#about" class="text-gray-300 hover:text-blue-400 transition duration-300">About</a></li>
-                <li><a href="#contact" class="inline-block px-5 py-2 text-sm font-medium text-white bg-blue-600 rounded-full hover:bg-blue-700 transition duration-300">
-                    Get in Touch
-                </a></li>
-            </ul>
-        </nav>
+            <nav class="hidden md:flex space-x-6">
+                <a href="#about" class="text-slate-600 hover:text-indigo-600 transition">About</a>
+                <a href="#services" class="text-slate-600 hover:text-indigo-600 transition">Services</a>
+                <a href="#portfolio" class="text-slate-600 hover:text-indigo-600 transition">Portfolio</a>
+                <a href="#process" class="text-slate-600 hover:text-indigo-600 transition">Process</a>
+                <a href="#faq" class="text-slate-600 hover:text-indigo-600 transition">FAQ</a>
+            </nav>
+            <a href="#contact" class="hidden md:block bg-indigo-600 text-white px-5 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition shadow-sm">
+                Get a Quote
+            </a>
+        </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="max-w-5xl mx-auto px-6 pt-32 pb-16">
-
+    <main>
         <!-- Hero Section -->
-        <section id="hero" class="text-center pt-16 pb-24 fade-in-section is-visible">
-            <span class="inline-block px-4 py-1 text-xs font-semibold tracking-wider text-emerald-300 bg-emerald-900 bg-opacity-50 rounded-full uppercase">
-                Intelligent Automation & AI Consultant
-            </span>
-            <h1 class="text-5xl md:text-7xl font-bold mt-6 mb-8">
-                <span class="gradient-text">Streamline Operations.</span>
-                <br>
-                <span class="text-white">Amplify Intelligence.</span>
-            </h1>
-            <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-10">
-                I'm Shahrukh Khan, an <strong class="text-white font-medium">intelligent automation expert</strong> with nearly a decade of experience. I leverage <strong class="text-white font-medium">AI and Machine Learning</strong> to help businesses like yours eliminate manual efforts, <strong class="text-white font-medium">unlock data-driven insights</strong>, and reduce operational costs.
-            </p>
-            <a href="#contact" class="inline-block px-8 py-4 text-lg font-medium text-white bg-blue-600 rounded-full hover:bg-blue-700 transition duration-300 shadow-lg shadow-blue-500/20">
-                Book a Free Consultation
-            </a>
-        </section>
-
-        <!-- Experience Stats -->
-        <section id="experience" class="pt-24 pb-16 fade-in-section">
-            <div class="grid md:grid-cols-3 gap-8 text-center">
-                <div class="bg-gray-800 p-6 rounded-lg border border-gray-700">
-                    <h3 class="text-4xl font-bold gradient-text">A Decade</h3>
-                    <p class="text-gray-300 mt-2">Of Experience</p>
-                    <p class="text-gray-400 text-sm mt-1">Dedicated to process optimization and automation.</p>
-                </div>
-                <div class="bg-gray-800 p-6 rounded-lg border border-gray-700">
-                    <h3 class="text-4xl font-bold gradient-text">1000s</h3>
-                    <p class="text-gray-300 mt-2">Hours Saved</p>
-                    <p class="text-gray-400 text-sm mt-1">Reclaiming valuable time for your team from repetitive tasks.</p>
-                </div>
-                <div class="bg-gray-800 p-6 rounded-lg border border-gray-700">
-                    <h3 class="text-4xl font-bold gradient-text">Cost</h3>
-                    <p class="text-gray-300 mt-2">Operational Reduction</p>
-                    <p class="text-gray-400 text-sm mt-1">Driving tangible savings by optimizing workflows.</p>
+        <section id="hero" class="pt-32 pb-20 hero-gradient">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 leading-tight">
+                    We Build Custom Web Apps That 
+                    <br class="hidden md:block">
+                    <span id="typing-text" class="text-indigo-600"></span><span class="typing-cursor"></span>
+                </h1>
+                <p class="mt-6 max-w-2xl mx-auto text-lg text-slate-600">
+                    From complex financial dashboards to streamlined management systems, Weblify turns your ideas into powerful, elegant, and user-friendly web applications.
+                </p>
+                <div class="mt-8 flex justify-center space-x-4">
+                    <a href="#portfolio" class="bg-indigo-600 text-white px-8 py-3 rounded-lg font-semibold text-lg hover:bg-indigo-700 transition shadow-md">
+                        View Our Work
+                    </a>
+                    <a href="#contact" class="bg-white text-slate-700 px-8 py-3 rounded-lg font-semibold text-lg hover:bg-slate-100 transition border border-slate-300">
+                        Contact Us
+                    </a>
                 </div>
             </div>
         </section>
 
-        <!-- Trusted By Section -->
-        <section id="trusted-by" class="pb-24 fade-in-section">
-            <h4 class="text-center text-sm font-semibold text-gray-400 uppercase tracking-wider mb-8">
-                Experience at industry leaders
-            </h4>
-            <div class="flex flex-wrap justify-center items-center gap-10 md:gap-16 opacity-70 grayscale">
-                <!-- Text-based logos -->
-                <div class="text-2xl font-semibold text-gray-300 tracking-wide">
-                    Morgan Stanley
-                </div>
-                <div class="text-3xl font-bold text-gray-300 tracking-tighter">
-                    citibank
-                </div>
-                <div class="text-2xl font-bold text-gray-300 tracking-wide">
-                    Tata Consultancy Services
-                </div>
-                <div class="text-2xl font-semibold text-gray-300 tracking-tight">
-                    KPIT
-                </div>
-                <div class="text-3xl font-bold text-gray-300 tracking-wider">
-                    SAP
-                </div>
-            </div>
-        </section>
-        
         <!-- About Section -->
-        <section id="about" class="py-24 fade-in-section">
-             <div class="text-center mb-16">
-                <span class="text-blue-400 uppercase tracking-widest font-semibold text-sm">About Me</span>
-                <h2 class="text-4xl md:text-5xl font-bold text-white mt-4">A Passion for Efficiency</h2>
-            </div>
-            <div class="max-w-3xl mx-auto text-lg text-gray-300 space-y-6">
-                <p>
-                    This question has led me on a journey through multiple industries, from <strong class="text-white font-medium">high-stakes finance at Morgan Stanley and Citibank</strong> to <strong class="text-white font-medium">global IT consulting with Tata Consultancy Services and KPIT (working client-side with platforms like SAP)</strong>. In my nearly a decade of experience, I've specialized in <strong class="text-white font-medium">designing and deploying intelligent automation solutions</strong> for these industry leaders, seeing firsthand how manual, repetitive tasks can drain a company's resources and stifle its potential for growth.
-                </p>
-                <p>
-                    My mission, underpinned by an <strong class="text-white font-medium">MSc in Data Science and AI from the UK</strong>, is to partner with businesses to build <strong class="text-white font-medium">AI-driven automation</strong> solutions. I don't just implement software; I analyze your entire operational workflow to find the root causes of inefficiency <strong class="text-white font-medium">and opportunities for AI augmentation</strong>. The result is a more resilient, scalable, and profitable business where your team is free to focus on what truly matters.
-                </p>
-                <p class="font-semibold text-white">
-                    Let's work together to build a more efficient future for your company.
-                </p>
+        <section id="about" class="py-20 bg-white">
+            <div class="container mx-auto px-6 fade-in-section">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-slate-900">From Vision to Reality</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600">We are a modern development studio that specializes in creating bespoke web solutions. We believe that the right software can transform a business, and our mission is to be the technical partner that gets you there.</p>
+                </div>
             </div>
         </section>
 
         <!-- Services Section -->
-        <section id="services" class="py-24 fade-in-section">
-            <div class="text-center mb-16">
-                <span class="text-blue-400 uppercase tracking-widest font-semibold text-sm">What I Do</span>
-                <h2 class="text-4xl md:text-5xl font-bold text-white mt-4">My Services: The Intelligent Automation Stack</h2>
-                <p class="text-lg text-gray-400 mt-4 max-w-3xl mx-auto">
-                    I offer end-to-end solutions to discover, design, and deploy intelligent automation that delivers real business value.
-                </p>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Service 1 -->
-                <div class="bg-gray-800 p-8 rounded-xl border border-gray-700 transition-all duration-300 hover:border-blue-500 hover:shadow-xl">
-                    <h3 class="text-2xl font-semibold text-white mb-3">Process Mining & Discovery</h3>
-                    <p class="text-gray-400">
-                        Before we automate, we analyze. I use data-driven process mining to find the *real* bottlenecks, inefficiencies, and high-impact AI opportunities in your existing workflows.
-                    </p>
+        <section id="services" class="py-20">
+            <div class="container mx-auto px-6 fade-in-section">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-slate-900">What We Do</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600">We provide end-to-end development services to bring your project to life.</p>
                 </div>
-                <!-- Service 2 -->
-                <div class="bg-gray-800 p-8 rounded-xl border border-gray-700 transition-all duration-300 hover:border-blue-500 hover:shadow-xl">
-                    <h3 class="text-2xl font-semibold text-white mb-3">Intelligent Automation (RPA + AI)</h3>
-                    <p class="text-gray-400">
-                        Going beyond basic RPA. I build resilient 'bots' that learn, read unstructured documents (IDP), handle complex exceptions using AI, and integrate with your entire tech stack.
-                    </p>
-                </div>
-                <!-- Service 3 -->
-                <div class="bg-gray-800 p-8 rounded-xl border border-gray-700 transition-all duration-300 hover:border-blue-500 hover:shadow-xl">
-                    <h3 class="text-2xl font-semibold text-white mb-3">Custom AI &amp; GenAI Solutions</h3>
-                    <p class="text-gray-400">
-                        For unique challenges, I develop custom AI models for predictive forecasting, anomaly detection, or integrating Generative AI to summarize reports and assist your team.
-                    </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="text-center p-8 bg-white rounded-2xl shadow-lg">
+                        <div class="inline-block p-4 bg-indigo-100 text-indigo-600 rounded-full"><i data-lucide="layout-template"></i></div>
+                        <h3 class="text-xl font-bold mt-4">Custom Web Apps</h3>
+                        <p class="mt-2 text-slate-600">We design and build tailored web applications from scratch to meet your unique business needs and workflows.</p>
+                    </div>
+                    <div class="text-center p-8 bg-white rounded-2xl shadow-lg">
+                        <div class="inline-block p-4 bg-indigo-100 text-indigo-600 rounded-full"><i data-lucide="zap"></i></div>
+                        <h3 class="text-xl font-bold mt-4">Automation & Integration</h3>
+                        <p class="mt-2 text-slate-600">We automate your manual processes and integrate disparate systems to improve efficiency and reduce errors.</p>
+                    </div>
+                    <div class="text-center p-8 bg-white rounded-2xl shadow-lg">
+                        <div class="inline-block p-4 bg-indigo-100 text-indigo-600 rounded-full"><i data-lucide="pen-tool"></i></div>
+                        <h3 class="text-xl font-bold mt-4">UI/UX & Prototyping</h3>
+                        <p class="mt-2 text-slate-600">We create intuitive, user-friendly interfaces and interactive prototypes to validate ideas before development.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Projects / Case Studies -->
-        <section id="projects" class="py-24 fade-in-section">
-            <div class="text-center mb-16">
-                <span class="text-blue-400 uppercase tracking-widest font-semibold text-sm">Proven Results</span>
-                <h2 class="text-4xl md:text-5xl font-bold text-white mt-4">Success Stories</h2>
-                <p class="text-lg text-gray-400 mt-4 max-w-2xl mx-auto">
-                    Here are a few examples of the impact I've made.
-                </p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Placeholder 1 -->
-                <div class="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden">
-                    <div class="p-8">
-                        <h3 class="text-2xl font-semibold text-white mb-3">Case Study: Logistics Firm</h3>
-                        <p class="text-gray-400 mb-4">
-                            Automated invoice processing <strong class="text-gray-200">using an AI-powered IDP (Intelligent Document Processing) solution</strong>, reducing processing time by 95% and eliminating human error.
-                        </p>
-                        <span class="inline-block px-3 py-1 text-xs font-medium text-emerald-300 bg-emerald-900 bg-opacity-50 rounded-full">Saved 40+ Man-Hours/Week</span>
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 fade-in-section">
+                    <h2 class="text-4xl font-bold text-slate-900">Our Portfolio</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600">
+                        We create powerful, intuitive tools that solve real-world problems. Here's a selection of our work.
+                    </p>
+                </div>
+
+                <!-- Filter Buttons -->
+                <div id="filter-buttons" class="flex justify-center flex-wrap gap-2 mb-12 fade-in-section">
+                    <button class="filter-btn active bg-indigo-600 text-white px-4 py-2 rounded-full font-semibold" data-filter="all">All</button>
+                    <button class="filter-btn bg-white px-4 py-2 rounded-full font-semibold" data-filter="finance">Financial Tools</button>
+                    <button class="filter-btn bg-white px-4 py-2 rounded-full font-semibold" data-filter="healthcare">Healthcare Solutions</button>
+                    <button class="filter-btn bg-white px-4 py-2 rounded-full font-semibold" data-filter="business">Business Management</button>
+                </div>
+
+                <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <!-- Project Card: Onboarding Task Manager -->
+                    <div class="project-card bg-white rounded-2xl shadow-lg overflow-hidden fade-in-section" data-category="finance">
+                        <img src="https://placehold.co/600x400/8b5cf6/ffffff?text=Onboarding+Tool" alt="Onboarding Task Manager Screenshot" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-900">Onboarding Task Manager</h3>
+                            <p class="mt-2 text-slate-600">An internal tool for professional firms to standardize and track new client onboarding with dynamic checklists, progress tracking, and notes.</p>
+                            <div class="mt-6">
+                                <a href="https://vantageonboarding.netlify.app/" target="_blank" class="w-full block text-center bg-indigo-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition">Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project Card: Clinic Management -->
+                    <div class="project-card bg-white rounded-2xl shadow-lg overflow-hidden fade-in-section" data-category="healthcare">
+                        <img src="https://placehold.co/600x400/6366f1/ffffff?text=Clinic+System" alt="Clinic Management System Screenshot" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-900">Clinic Management System</h3>
+                            <p class="mt-2 text-slate-600">A comprehensive system for medical practices to manage appointments, patient records (EHR), prescriptions, and telemedicine calls in one secure platform.</p>
+                            <div class="mt-6">
+                                <a href="https://doctorclinicmanagement.netlify.app" target="_blank" class="w-full block text-center bg-indigo-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition">Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project Card: Restaurant Management -->
+                    <div class="project-card bg-white rounded-2xl shadow-lg overflow-hidden fade-in-section" data-category="business">
+                        <img src="https://placehold.co/600x400/10b981/ffffff?text=Restaurant+System" alt="Restaurant Management System Screenshot" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-900">Restaurant Management System</h3>
+                            <p class="mt-2 text-slate-600">An all-in-one platform for restaurants featuring table reservations, POS integration, kitchen order tracking, and customer loyalty program management.</p>
+                            <div class="mt-6">
+                                <a href="https://prestoserve.netlify.app/" target="_blank" class="w-full block text-center bg-indigo-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition">Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project Card: Financial KPI Dashboard -->
+                    <div class="project-card bg-white rounded-2xl shadow-lg overflow-hidden fade-in-section" data-category="finance">
+                        <img src="https://placehold.co/600x400/f59e0b/ffffff?text=KPI+Dashboard" alt="Financial KPI Dashboard Screenshot" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-900">Financial KPI Dashboard</h3>
+                            <p class="mt-2 text-slate-600">An interactive tool that transforms raw financial data from a CSV into a professional dashboard with industry-specific KPIs and actionable insights.</p>
+                            <div class="mt-6">
+                                <a href="https://financekpi.netlify.app/" target="_blank" class="w-full block text-center bg-indigo-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition">Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project Card: Financial Anomaly Checker -->
+                    <div class="project-card bg-white rounded-2xl shadow-lg overflow-hidden fade-in-section" data-category="finance">
+                        <img src="https://placehold.co/600x400/ef4444/ffffff?text=Anomaly+Checker" alt="Financial Anomaly Checker Screenshot" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-900">Financial Anomaly Checker</h3>
+                            <p class="mt-2 text-slate-600">A powerful, client-side tool for accountants to automatically detect errors, imbalances, and inconsistencies in financial statements from a simple CSV upload.</p>
+                            <div class="mt-6">
+                                <a href="https://anomalychecker.netlify.app/" target="_blank" class="w-full block text-center bg-indigo-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition">Live Demo</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <!-- Placeholder 2 -->
-                <div class="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden">
-                    <div class="p-8">
-                        <h3 class="text-2xl font-semibold text-white mb-3">Case Study: E-commerce Retailer</h3>
-                        <p class="text-gray-400 mb-4">
-                            Developed an <strong class="text-gray-200">AI-driven bot</strong> to sync inventory levels across five online marketplaces <strong class="text-gray-200">and provide predictive forecasting</strong> to prevent stock-outs.
-                        </p>
-                        <span class="inline-block px-3 py-1 text-xs font-medium text-emerald-300 bg-emerald-900 bg-opacity-50 rounded-full">Reduced OpEx by 15%</span>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section id="process" class="py-20">
+            <div class="container mx-auto px-6 fade-in-section">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-slate-900">Our Development Process</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600">We follow a structured, transparent process to ensure your project is a success from start to finish.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
+                    <div class="p-6">
+                        <div class="flex items-center justify-center h-16 w-16 mx-auto bg-indigo-100 text-indigo-600 rounded-full text-2xl font-bold">1</div>
+                        <h3 class="text-xl font-semibold mt-4">Discovery & Strategy</h3>
+                        <p class="mt-2 text-slate-600">We start by understanding your goals, challenges, and requirements to define a clear project roadmap.</p>
+                    </div>
+                     <div class="p-6">
+                        <div class="flex items-center justify-center h-16 w-16 mx-auto bg-indigo-100 text-indigo-600 rounded-full text-2xl font-bold">2</div>
+                        <h3 class="text-xl font-semibold mt-4">Design & Prototype</h3>
+                        <p class="mt-2 text-slate-600">We design an intuitive user interface and create interactive prototypes for your feedback and approval.</p>
+                    </div>
+                     <div class="p-6">
+                        <div class="flex items-center justify-center h-16 w-16 mx-auto bg-indigo-100 text-indigo-600 rounded-full text-2xl font-bold">3</div>
+                        <h3 class="text-xl font-semibold mt-4">Development & Testing</h3>
+                        <p class="mt-2 text-slate-600">Our team builds the application using modern technologies, with rigorous testing throughout the process.</p>
+                    </div>
+                     <div class="p-6">
+                        <div class="flex items-center justify-center h-16 w-16 mx-auto bg-indigo-100 text-indigo-600 rounded-full text-2xl font-bold">4</div>
+                        <h3 class="text-xl font-semibold mt-4">Launch & Support</h3>
+                        <p class="mt-2 text-slate-600">We handle the deployment and provide ongoing support to ensure your application runs smoothly.</p>
                     </div>
                 </div>
             </div>
-             <p class="text-center text-gray-400 mt-12">
-                (More of your amazing case studies and testimonials will go here!)
-            </p>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="py-20 bg-white">
+            <div class="container mx-auto px-6 fade-in-section">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-slate-900">What Our Clients Say</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200">
+                        <p class="text-slate-600">"Weblify transformed our internal workflow. The onboarding tool they built for us has saved our team countless hours and eliminated manual errors. Highly recommended!"</p>
+                        <div class="mt-4 font-semibold text-slate-800">- Roopansh Anand, Freelancer</div>
+                    </div>
+                    <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200">
+                        <p class="text-slate-600">"The custom management system they developed is the backbone of our clinic. It's intuitive, reliable, and has allowed us to provide a much better experience for our patients."</p>
+                        <div class="mt-4 font-semibold text-slate-800">- Arshi Khan, Tata Consultancy Services</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- FAQ Section -->
+        <section id="faq" class="py-20">
+            <div class="container mx-auto px-6 fade-in-section">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-slate-900">Frequently Asked Questions</h2>
+                </div>
+                <div id="faq-container" class="max-w-3xl mx-auto space-y-4">
+                    <!-- FAQ items will be injected here -->
+                </div>
+            </div>
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="py-24 fade-in-section">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold text-white">
-                    Ready to Automate Your Success?
-                </h2>
-                <p class="text-lg text-gray-400 mt-4 max-w-2xl mx-auto">
-                    Let's talk. Fill out the form below or email me directly at
-                    <a href="mailto:weblifysoft@gmail.com" class="text-blue-400 hover:text-blue-300 font-medium">weblifysoft@gmail.com</a>.
-                </p>
-            </div>
-
-            <!-- Formspree Contact Form -->
-            <!-- 
-                INSTRUCTIONS: 
-                1. Go to formspree.io and create a new form.
-                2. Copy your form's "action" URL.
-                3. Replace "https://formspree.io/f/YOUR_UNIQUE_ID" with your URL.
-            -->
-            <form id="contact-form" action="https://formspree.io/f/xdkprlgd" method="POST" class="max-w-2xl mx-auto">
-                <div class="space-y-6">
-                    <div>
-                        <label for="name" class="block text-sm font-medium text-gray-300 mb-2">Full Name</label>
-                        <input type="text" id="name" name="name" required
-                               class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                    </div>
-                    <div>
-                        <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email Address</label>
-                        <input type="email" id="email" name="email" required
-                               class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                    </div>
-                    <div>
-                        <label for="message" class="block text-sm font-medium text-gray-300 mb-2">How can I help?</label>
-                        <textarea id="message" name="message" rows="5" required
-                                  class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                  placeholder="Tell me about your business challenges, project ideas, or automation goals..."></textarea>
-                    </div>
-                    <div class="text-center">
-                        <button type="submit"
-                                class="inline-block w-full px-8 py-4 text-lg font-medium text-white bg-blue-600 rounded-full hover:bg-blue-700 transition duration-300 shadow-lg shadow-blue-500/20">
-                            Send Message
-                        </button>
+        <section id="contact" class="py-20 bg-white">
+            <div class="container mx-auto px-6 fade-in-section">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-slate-900">Let's Build Something Great Together</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600">
+                        Have a project in mind? We'd love to hear about it. Fill out the form below or email us directly.
+                    </p>
+                </div>
+                <div class="max-w-2xl mx-auto">
+                    <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200">
+                        <form action="https://formspree.io/f/meorewpg" method="POST">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="md:col-span-1">
+                                    <label for="name" class="block text-sm font-medium text-slate-700">Your Name</label>
+                                    <input type="text" name="name" id="name" class="mt-1 block w-full px-4 py-3 border border-slate-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500" required>
+                                </div>
+                                <div class="md:col-span-1">
+                                    <label for="email" class="block text-sm font-medium text-slate-700">Your Email</label>
+                                    <input type="email" name="email" id="email" class="mt-1 block w-full px-4 py-3 border border-slate-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500" required>
+                                </div>
+                                <div class="md:col-span-2">
+                                     <label for="message" class="block text-sm font-medium text-slate-700">Project Details</label>
+                                     <textarea name="message" id="message" rows="5" class="mt-1 block w-full px-4 py-3 border border-slate-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500" required></textarea>
+                                </div>
+                            </div>
+                            <div class="mt-6 text-right">
+                                <button type="submit" class="bg-indigo-600 text-white px-8 py-3 rounded-lg font-semibold text-lg hover:bg-indigo-700 transition shadow-sm">
+                                    Send Message
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
-            </form>
+            </div>
         </section>
-
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-gray-800">
-        <div class="max-w-5xl mx-auto px-6 py-12 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
-            <p class="text-gray-400">
-                &copy; 2025 Shahrukh Khan. All rights reserved.
-            </p>
-            <div class="flex space-x-6 mt-6 md:mt-0">
-                <!-- LinkedIn Icon -->
-                <a href="https://www.linkedin.com/in/srk885/" class="text-gray-400 hover:text-white transition duration-300">
-                    <span class="sr-only">LinkedIn</span>
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                    </svg>
-                </a>
-                <!-- Twitter Icon -->
-                <a href="#" class="text-gray-400 hover:text-white transition duration-300">
-                    <span class="sr-only">Twitter</span>
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.586-5.515 5.749 0 .44.048.869.14 1.28-4.576-.229-8.632-2.424-11.35-5.76-.474.811-.74 1.755-.74 2.747 0 1.996 1.012 3.757 2.55 4.794-.94-.03-1.82-.288-2.59-.714v.072c0 2.79 1.98 5.118 4.608 5.648-.48.13-1 .198-1.52.198-.37 0-.73-.036-1.08-.104.73 2.28 2.85 3.94 5.37 3.98-1.97 1.54-4.45 2.46-7.16 2.46-.46 0-.92-.026-1.37-.08 2.55 1.64 5.56 2.61 8.84 2.61 10.6 0 16.4-8.77 16.4-16.4 0-.25 0-.5-.01-.74.45-.33.84-.74 1.15-1.2z"/>
-                    </svg>
-                </a>
+    <footer class="bg-slate-900 text-slate-400">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-4">Weblify</h3>
+                    <p>Building elegant solutions for complex problems.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Contact Us</h3>
+                    <p>Email: <a href="mailto:weblifysoft@gmail.com" class="hover:text-indigo-400">weblifysoft@gmail.com</a></p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Follow Us</h3>
+                    <div class="flex justify-center md:justify-start space-x-4">
+                        <a href="#" class="hover:text-indigo-400"><i data-lucide="twitter"></i></a>
+                        <a href="#" class="hover:text-indigo-400"><i data-lucide="github"></i></a>
+                        <a href="#" class="hover:text-indigo-400"><i data-lucide="linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-slate-800 pt-8 text-center text-sm">
+                <p>&copy; 2025 Weblify. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            
-            // --- Intersection Observer for fade-in animations ---
+            // --- Initialize Lucide Icons ---
+            lucide.createIcons();
+
+            // --- Typing Animation ---
+            const typingTextElement = document.getElementById('typing-text');
+            const words = ["Solve Problems.", "Automate Tasks.", "Drive Growth."];
+            let wordIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+
+            function type() {
+                const currentWord = words[wordIndex];
+                if (isDeleting) {
+                    typingTextElement.textContent = currentWord.substring(0, charIndex - 1);
+                    charIndex--;
+                } else {
+                    typingTextElement.textContent = currentWord.substring(0, charIndex + 1);
+                    charIndex++;
+                }
+
+                if (!isDeleting && charIndex === currentWord.length) {
+                    setTimeout(() => isDeleting = true, 2000);
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    wordIndex = (wordIndex + 1) % words.length;
+                }
+
+                const typingSpeed = isDeleting ? 100 : 200;
+                setTimeout(type, typingSpeed);
+            }
+            type();
+
+            // --- Scroll Animations ---
             const sections = document.querySelectorAll('.fade-in-section');
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
-                        // Optional: unobserve after it's visible so it doesn't re-animate
-                        // observer.unobserve(entry.target); 
                     }
                 });
-            }, {
-                rootMargin: '0px',
-                threshold: 0.15 // 15% of the element is visible
-            });
+            }, { threshold: 0.1 });
 
             sections.forEach(section => {
                 observer.observe(section);
             });
 
-            // --- Smooth scrolling for nav links ---
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    if(targetElement) {
-                        // Calculate offset for fixed header
-                        const headerOffset = 80; // Adjust as needed
-                        const elementPosition = targetElement.getBoundingClientRect().top;
-                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                
-                        window.scrollTo({
-                            top: offsetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
+            // --- Portfolio Filter ---
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const portfolioGrid = document.getElementById('portfolio-grid');
+            const projectCards = portfolioGrid.querySelectorAll('.project-card');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Update active button style
+                    filterButtons.forEach(btn => btn.classList.remove('active', 'bg-indigo-600', 'text-white'));
+                    button.classList.add('active', 'bg-indigo-600', 'text-white');
+
+                    const filter = button.dataset.filter;
+
+                    projectCards.forEach(card => {
+                        if (filter === 'all' || card.dataset.category === filter) {
+                            card.classList.remove('hidden');
+                        } else {
+                            card.classList.add('hidden');
+                        }
+                    });
                 });
             });
 
-            // Note: The mock contact form submission JS has been removed 
-            // as Formspree will now handle submissions.
+            // --- FAQ Accordion ---
+            const faqContainer = document.getElementById('faq-container');
+            const faqs = [
+                { q: "What is your development process?", a: "We follow a 4-step process: Discovery & Strategy, Design & Prototype, Development & Testing, and Launch & Support. This ensures we build the right solution that meets your goals, on time and on budget." },
+                { q: "How much does a custom web application cost?", a: "The cost of a custom app varies depending on the complexity, features, and timeline. After our initial discovery call, we provide a detailed proposal with a fixed price or a project estimate." },
+                { q: "How long does it take to build an app?", a: "A typical project can take anywhere from 4 to 12 weeks. Simpler applications can be built faster, while more complex systems require more time for development and testing." },
+                { q: "What technologies do you use?", a: "We use modern, reliable technologies to build our applications. Our front-end work is typically done in HTML, CSS, and JavaScript (often with frameworks like React), and we are flexible with backend technologies based on project needs." }
+            ];
 
+            faqContainer.innerHTML = faqs.map((faq, index) => `
+                <div class="faq-item border border-slate-200 rounded-lg">
+                    <button class="faq-question w-full flex justify-between items-center text-left p-4 font-semibold">
+                        <span>${faq.q}</span>
+                        <i data-lucide="plus" class="faq-icon h-5 w-5 text-indigo-600"></i>
+                    </button>
+                    <div class="faq-answer px-4 pb-4 text-slate-600">
+                        <p>${faq.a}</p>
+                    </div>
+                </div>
+            `).join('');
+            
+            lucide.createIcons(); // Re-initialize icons for FAQ
+
+            faqContainer.addEventListener('click', (e) => {
+                const questionButton = e.target.closest('.faq-question');
+                if (questionButton) {
+                    const faqItem = questionButton.parentElement;
+                    const icon = questionButton.querySelector('.faq-icon');
+                    
+                    faqItem.classList.toggle('open');
+                    
+                    if (faqItem.classList.contains('open')) {
+                        icon.setAttribute('data-lucide', 'minus');
+                    } else {
+                        icon.setAttribute('data-lucide', 'plus');
+                    }
+                    lucide.createIcons();
+                }
+            });
         });
     </script>
 </body>
 </html>
-
